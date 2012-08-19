@@ -3,7 +3,8 @@ require "bundler/capistrano"
 server "rede2g.grp360.com", :web, :app, :db, primary: true
 
 set :application, "blog"
-set :user, "deployer"
+set :user, "ubuntu"
+# set :password, "asdfasdf"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
@@ -14,7 +15,8 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "aws_sp_doubleg.pem")]
+# ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "aws_sp_doubleg.pem")]
+# ssh_options[:keys] = ["/Users/wladimir/.ec2/aws_sp_doubleg.pem"]
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
